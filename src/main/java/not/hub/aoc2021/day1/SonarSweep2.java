@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class SonarSweep2 extends Solver<List<Integer>, Long> {
+public class SonarSweep2 implements Solver<List<Integer>, Long> {
 
     @Override
     public Long solve(List<Integer> input) {
