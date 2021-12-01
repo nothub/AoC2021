@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class SonarSweep2 extends Solver<List<Integer>, Integer> {
+public class SonarSweep2 extends Solver<List<Integer>, Long> {
 
     @Override
-    public Integer solve(List<Integer> input) {
+    public Long solve(List<Integer> input) {
         return new SonarSweep1().solve(
             IntStream
                 .range(0, input.size())
