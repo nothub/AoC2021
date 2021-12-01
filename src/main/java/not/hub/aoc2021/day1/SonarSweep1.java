@@ -10,8 +10,7 @@ public class SonarSweep1 extends Solver<List<Integer>, Long> {
     @Override
     public Long solve(List<Integer> input) {
         return IntStream
-            .range(0, input.size())
-            .takeWhile(i -> i < input.size() - 1)
+            .range(0, input.size() - 1)
             .filter(i -> input.get(i) < input.get(i + 1))
             .count();
     }
