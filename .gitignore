@@ -1,0 +1,8 @@
+*
+!*/
+
+!/.editorconfig
+!/.github/**
+!/.gitignore
+!/pom.xml
+!/src/**

@@ -1,0 +1,29 @@
+name: 🚔
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Git
+        uses: actions/checkout@v2
+
+      - name: Java
+        uses: actions/setup-java@v2.4.0
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          check-latest: true
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Test
+        run: mvn --batch-mode --show-version --errors test --file pom.xml
