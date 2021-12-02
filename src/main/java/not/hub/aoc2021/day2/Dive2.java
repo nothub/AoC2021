@@ -13,14 +13,16 @@ public class Dive2 implements Solver<List<String>, Integer> {
         int y = 0;
         int aim = 0;
         for (String s : input) {
-            String[] raw = s.split(" ");
-            switch (raw[0]) {
+            var command = s.split(" ");
+            var direction = command[0];
+            var value = Integer.parseInt(command[1]);
+            switch (direction) {
                 case "forward" -> {
-                    x = x + Integer.parseInt(raw[1]);
-                    y = y + (aim * Integer.parseInt(raw[1]));
+                    x += value;
+                    y += (aim * value);
                 }
-                case "down" -> aim = aim + Integer.parseInt(raw[1]);
-                case "up" -> aim = aim - Integer.parseInt(raw[1]);
+                case "down" -> aim += value;
+                case "up" -> aim -= value;
                 default -> throw new PuzzleException("unknown direction");
             }
         }

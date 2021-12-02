@@ -12,11 +12,13 @@ public class Dive1 implements Solver<List<String>, Integer> {
         int x = 0;
         int y = 0;
         for (String s : input) {
-            String[] raw = s.split(" ");
-            switch (raw[0]) {
-                case "forward" -> x = x + Integer.parseInt(raw[1]);
-                case "down" -> y = y + Integer.parseInt(raw[1]);
-                case "up" -> y = y - Integer.parseInt(raw[1]);
+            var command = s.split(" ");
+            var direction = command[0];
+            var value = Integer.parseInt(command[1]);
+            switch (direction) {
+                case "forward" -> x += value;
+                case "down" -> y += value;
+                case "up" -> y -= value;
                 default -> throw new PuzzleException("unknown direction");
             }
         }
