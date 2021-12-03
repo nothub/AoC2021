@@ -1,5 +1,6 @@
 package not.hub.aoc2021.day3;
 
+import not.hub.aoc2021.PuzzleException;
 import not.hub.aoc2021.Solver;
 
 import java.util.ArrayList;
@@ -12,27 +13,26 @@ public class BinaryDiagnostic2 implements Solver<List<String>, Integer> {
         var z = 0;
         for (var line : input) {
             if (line.charAt(index) == '1') o++;
-            else z++;
+            else if (line.charAt(index) == '0') z++;
+            else throw new PuzzleException("invalid input");
         }
         if (most) return (o >= z ? 1 : 0);
         else return (z <= o ? 0 : 1);
     }
 
-    private static ArrayList<String> reduce(List<String> input, boolean most) {
+    private static String reduce(List<String> input, boolean most) {
         var output = new ArrayList<>(input);
         for (var i = 0; i < input.get(0).length(); i++) {
             final var fi = i;
             output.removeIf(s -> s.charAt(fi) != Character.forDigit(criteria(output, fi, most), 10));
             if (output.size() == 1) break;
         }
-        return output;
+        return output.get(0);
     }
 
     @Override
     public Integer solve(List<String> input) {
-        var o2 = reduce(input, true);
-        var co2 = reduce(input, false);
-        return Integer.parseInt(o2.get(0), 2) * Integer.parseInt(co2.get(0), 2);
+        return Integer.parseInt(reduce(input, true), 2) * Integer.parseInt(reduce(input, false), 2);
     }
 
 }
