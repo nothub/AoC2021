@@ -15,7 +15,14 @@ import java.util.List;
 @Execution(ExecutionMode.CONCURRENT)
 class Day3Test {
 
+    private static final List<String> example = InputParser.stringList("inputs/day3_example");
     private static final List<String> input = InputParser.stringList("inputs/day3");
+
+    @Test
+    @DisplayName("Part 1 - Example")
+    void part1_example(TestInfo info) {
+        AssertWrapper.equals(198, new BinaryDiagnostic1().solve(example), info);
+    }
 
     @Test
     @DisplayName("Part 1")
