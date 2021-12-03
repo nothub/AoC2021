@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class BinaryDiagnostic1 implements Solver<List<String>, Integer> {
 
-    static int[] rotate(List<String> input) {
+    private static int[] rotate(List<String> input) {
         int[] rotated = new int[input.get(0).length()];
         for (int i = 0; i < input.get(0).length(); i++) {
             for (String s : input) {
@@ -18,7 +18,7 @@ public class BinaryDiagnostic1 implements Solver<List<String>, Integer> {
         return rotated;
     }
 
-    static int[] invert(int[] common) {
+    private static int[] invert(int[] common) {
         int[] inverted = new int[common.length];
         for (int i = 0; i < common.length; i++) {
             if (common[i] == 1) inverted[i] = 0;
@@ -27,7 +27,7 @@ public class BinaryDiagnostic1 implements Solver<List<String>, Integer> {
         return inverted;
     }
 
-    static int parse(int[] arr) {
+    private static int parse(int[] arr) {
         return Integer.parseInt(Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining()), 2);
     }
 
