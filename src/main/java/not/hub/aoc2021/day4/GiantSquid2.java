@@ -6,28 +6,9 @@ import not.hub.aoc2021.Solver;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static not.hub.aoc2021.day4.GiantSquid1.isWinner;
+
 public class GiantSquid2 implements Solver<List<String>, Integer> {
-
-    private static boolean isWinner(int[][] grid) {
-        int[][] gridRotated = rotate(grid);
-        for (int i = 0; i < grid.length; i++) {
-            if (Arrays.stream(grid[i]).sum() == -5) return true;
-            if (Arrays.stream(gridRotated[i]).sum() == -5) return true;
-        }
-        return false;
-    }
-
-    private static int[][] rotate(int[][] grid) {
-        final int m = grid.length;
-        final int n = grid[0].length;
-        int[][] gridRotated = new int[n][m];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                gridRotated[j][m - 1 - i] = grid[i][j];
-            }
-        }
-        return gridRotated;
-    }
 
     @Override
     public Integer solve(List<String> input) {

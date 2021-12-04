@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class GiantSquid1 implements Solver<List<String>, Integer> {
 
-    private static boolean isWinner(int[][] grid) {
+    static boolean isWinner(int[][] grid) {
         int[][] gridRotated = rotate(grid);
         for (int i = 0; i < grid.length; i++) {
             if (Arrays.stream(grid[i]).sum() == -5) return true;
