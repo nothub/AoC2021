@@ -25,10 +25,12 @@ public class AssertWrapper {
 
     public static void equals(int actual, BigInteger result, TestInfo info) {
         equals(BigInteger.valueOf(actual), result, info);
+        Logger.info(info.getDisplayName() + ": " + result);
     }
 
     public static void equals(long actual, BigInteger result, TestInfo info) {
         equals(BigInteger.valueOf(actual), result, info);
+        Logger.info(info.getDisplayName() + ": " + result);
     }
 
     public static void equals(String actual, String result, TestInfo info) {
