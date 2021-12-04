@@ -10,14 +10,6 @@ import java.util.stream.Collectors;
 
 public class GiantSquid1 implements Solver<List<String>, Integer> {
 
-    private static int sumUnmarked(int[][] grid) {
-        int sum = 0;
-        for (int[] row : grid) {
-            sum += Arrays.stream(row).filter(i -> i != -1).sum();
-        }
-        return sum;
-    }
-
     private static boolean isWinner(int[][] grid) {
         int[][] gridRotated = rotate(grid);
         for (int i = 0; i < grid.length; i++) {
@@ -27,25 +19,16 @@ public class GiantSquid1 implements Solver<List<String>, Integer> {
         return false;
     }
 
-    private static void print(List<int[][]> grids) {
-        for (int[][] grid : grids) {
-            for (int[] ints : grid) {
-                System.out.println(Arrays.toString(ints));
-            }
-            System.out.println("---");
-        }
-    }
-
-    static int[][] rotate(int[][] in) {
-        final int m = in.length;
-        final int n = in[0].length;
-        int[][] out = new int[n][m];
-        for (int r = 0; r < m; r++) {
-            for (int c = 0; c < n; c++) {
-                out[c][m - 1 - r] = in[r][c];
+    private static int[][] rotate(int[][] grid) {
+        final int m = grid.length;
+        final int n = grid[0].length;
+        int[][] gridRotated = new int[n][m];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                gridRotated[j][m - 1 - i] = grid[i][j];
             }
         }
-        return out;
+        return gridRotated;
     }
 
     @Override
@@ -61,7 +44,6 @@ public class GiantSquid1 implements Solver<List<String>, Integer> {
             }
             grids.add(grid);
         }
-        print(grids);
         for (Integer l : lucky) {
             for (int[][] grid : grids) {
                 for (int i = 0; i < grid.length; i++) {
@@ -69,7 +51,9 @@ public class GiantSquid1 implements Solver<List<String>, Integer> {
                         if (grid[i][j] == l) grid[i][j] = -1;
                     }
                 }
-                if (isWinner(grid)) return sumUnmarked(grid) * l;
+                if (isWinner(grid)) {
+                    return Arrays.stream(grid).mapToInt(row -> Arrays.stream(row).filter(i -> i != -1).sum()).sum() * l;
+                }
             }
         }
         throw new PuzzleException("no solution");
