@@ -10,6 +10,22 @@ import java.util.stream.Collectors;
 
 public class GiantSquid1 implements Solver<List<String>, Integer> {
 
+    static List<Integer> parseLucky(List<String> input) {
+        return Arrays.stream(input.get(0).split(",")).map(Integer::valueOf).collect(Collectors.toList());
+    }
+
+    static List<int[][]> parseGrids(List<String> input) {
+        List<int[][]> grids = new ArrayList<>();
+        for (int i = 0; i < input.size(); i = i + 5) {
+            int[][] grid = new int[5][5];
+            for (int j = 0; j < 5; j++) {
+                grid[j] = Arrays.stream(input.get(i + j).split(" ")).filter(s -> !s.isEmpty()).mapToInt(Integer::parseInt).toArray();
+            }
+            grids.add(grid);
+        }
+        return grids;
+    }
+
     static boolean isWinner(int[][] grid) {
         int[][] gridRotated = rotate(grid);
         for (int i = 0; i < grid.length; i++) {
@@ -33,17 +49,10 @@ public class GiantSquid1 implements Solver<List<String>, Integer> {
 
     @Override
     public Integer solve(List<String> input) {
-        List<Integer> lucky = Arrays.stream(input.get(0).split(",")).map(Integer::valueOf).collect(Collectors.toList());
-        List<int[][]> grids = new ArrayList<>();
+        List<Integer> lucky = parseLucky(input);
         input.remove(0);
         input.removeIf(String::isEmpty);
-        for (int i = 0; i < input.size(); i = i + 5) {
-            int[][] grid = new int[5][5];
-            for (int j = 0; j < 5; j++) {
-                grid[j] = Arrays.stream(input.get(i + j).split(" ")).filter(s -> !s.isEmpty()).mapToInt(Integer::parseInt).toArray();
-            }
-            grids.add(grid);
-        }
+        List<int[][]> grids = parseGrids(input);
         for (Integer l : lucky) {
             for (int[][] grid : grids) {
                 for (int i = 0; i < grid.length; i++) {
