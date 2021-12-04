@@ -1,6 +1,7 @@
 package not.hub.aoc2021.tests;
 
 import not.hub.aoc2021.day4.GiantSquid1;
+import not.hub.aoc2021.day4.GiantSquid2;
 import not.hub.aoc2021.tests.util.AssertWrapper;
 import not.hub.aoc2021.tests.util.InputParser;
 import org.junit.jupiter.api.DisplayName;
@@ -28,6 +29,18 @@ class Day4Test {
     @DisplayName("Part 1")
     void part1(TestInfo info) {
         AssertWrapper.equals(51776, new GiantSquid1().solve(input), info);
+    }
+
+    @Test
+    @DisplayName("Part 2 - Example")
+    void part2_example(TestInfo info) {
+        AssertWrapper.equals(1924, new GiantSquid2().solve(example), info);
+    }
+
+    @Test
+    @DisplayName("Part 2")
+    void part2(TestInfo info) {
+        AssertWrapper.equals(16830, new GiantSquid2().solve(input), info);
     }
 
 }
