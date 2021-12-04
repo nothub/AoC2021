@@ -27,7 +27,7 @@ class Day4Test {
     @Test
     @DisplayName("Part 1")
     void part1(TestInfo info) {
-        AssertWrapper.equals(-1, new GiantSquid1().solve(input), info);
+        AssertWrapper.equals(51776, new GiantSquid1().solve(input), info);
     }
 
 }
