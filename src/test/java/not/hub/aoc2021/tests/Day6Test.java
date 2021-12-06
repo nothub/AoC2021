@@ -1,6 +1,7 @@
 package not.hub.aoc2021.tests;
 
 import not.hub.aoc2021.day6.Lanternfish1;
+import not.hub.aoc2021.day6.Lanternfish2;
 import not.hub.aoc2021.tests.util.AssertWrapper;
 import not.hub.aoc2021.tests.util.InputParser;
 import org.junit.jupiter.api.DisplayName;
@@ -21,10 +22,23 @@ class Day6Test {
     void part1_example(TestInfo info) {
         AssertWrapper.equals(5934, new Lanternfish1().solve(example), info);
     }
+
     @Test
     @DisplayName("Part 1")
     void part1(TestInfo info) {
         AssertWrapper.equals(379114, new Lanternfish1().solve(input), info);
+    }
+
+    @Test
+    @DisplayName("Part 2 - Example")
+    void part2_example(TestInfo info) {
+        AssertWrapper.equals(26984457539L, new Lanternfish2().solve(example), info);
+    }
+
+    @Test
+    @DisplayName("Part 2")
+    void part2(TestInfo info) {
+        AssertWrapper.equals(1702631502303L, new Lanternfish2().solve(input), info);
     }
 
 }
