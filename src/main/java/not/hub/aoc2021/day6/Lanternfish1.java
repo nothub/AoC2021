@@ -30,17 +30,11 @@ public class Lanternfish1 implements Solver<String, Long> {
     private static Map<Integer, Long> evolve(Map<Integer, Long> lastGen) {
         Map<Integer, Long> nextGen = new HashMap<>();
         for (int i = 0; i <= 8; i++) {
-            tick(lastGen, nextGen, i, (i + 1) % 9);
+            long v = lastGen.getOrDefault((i + 1) % 9, 0L);
+            if (i == 6) v += lastGen.getOrDefault(0, 0L);
+            nextGen.put(i, v);
         }
         return nextGen;
-    }
-
-    private static void tick(Map<Integer, Long> lastGen, Map<Integer, Long> nextGen, int currentDay, int lastDay) {
-        nextGen.put(currentDay,
-            currentDay == 6
-                ? lastGen.getOrDefault(lastDay, 0L) + lastGen.getOrDefault(0, 0L)
-                : lastGen.getOrDefault(lastDay, 0L)
-        );
     }
 
     @Override
