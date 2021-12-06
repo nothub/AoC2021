@@ -2,30 +2,29 @@ package not.hub.aoc2021.day6;
 
 import not.hub.aoc2021.Solver;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Lanternfish1 implements Solver<String, Long> {
 
     static Long solve(String input, int days) {
-        Map<Integer, Long> fishies = new HashMap<>();
+        long[] fishies = new long[9];
         for (String s : input.split(",")) {
             int i = Integer.parseInt(s);
-            fishies.put(i, fishies.getOrDefault(i, 0L) + 1);
+            fishies[i] = fishies[i] + 1;
         }
         while (days > 0) {
             fishies = evolve(fishies);
             days--;
         }
-        return fishies.values().stream().mapToLong(Long::valueOf).sum();
+        return Arrays.stream(fishies).sum();
     }
 
-    private static Map<Integer, Long> evolve(Map<Integer, Long> lastGen) {
-        Map<Integer, Long> nextGen = new HashMap<>();
+    private static long[] evolve(long[] lastGen) {
+        long[] nextGen = new long[9];
         for (int i = 0; i <= 8; i++) {
-            long v = lastGen.getOrDefault((i + 1) % 9, 0L);
-            if (i == 6) v += lastGen.getOrDefault(0, 0L);
-            nextGen.put(i, v);
+            long v = lastGen[(i + 1) % 9];
+            if (i == 6) v += lastGen[0];
+            nextGen[i] = v;
         }
         return nextGen;
     }
