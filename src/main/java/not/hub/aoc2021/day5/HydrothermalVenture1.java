@@ -25,8 +25,6 @@ public class HydrothermalVenture1 implements Solver<List<String>, Integer> {
                 IntStream.range(Math.min(y1, y2), Math.max(y2, y1) + 1).forEach(y -> grid[x1][y] += 1);
             } else if (y1 == y2) {
                 IntStream.range(Math.min(x1, x2), Math.max(x2, x1) + 1).forEach(x -> grid[x][y1] += 1);
-            } else {
-                // diagonal
             }
         }
         return Arrays
