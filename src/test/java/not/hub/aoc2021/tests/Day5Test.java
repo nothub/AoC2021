@@ -24,15 +24,13 @@ class Day5Test {
     @Test
     @DisplayName("Part 1 - Example")
     void part1_example(TestInfo info) {
-        // TODO
-        //AssertWrapper.equals(5, new HydrothermalVenture1().solve(new ArrayList<>(example)), info);
+        AssertWrapper.equals(5, new HydrothermalVenture1().solve(new ArrayList<>(example)), info);
     }
 
     @Test
     @DisplayName("Part 1")
     void part1(TestInfo info) {
-        // TODO
-        //AssertWrapper.equals(-1, new HydrothermalVenture1().solve(new ArrayList<>(input)), info);
+        AssertWrapper.equals(5576, new HydrothermalVenture1().solve(new ArrayList<>(input)), info);
     }
 
     @Test
